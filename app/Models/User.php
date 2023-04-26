@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function user(){
       return $this->hasMany(Task::class);
     }
+
+    public function maintenanceConvert(){
+      return $this->hasMany(MaintenanceConvert::class);
+    }
 }

@@ -6,7 +6,8 @@ namespace Database\Seeders;
 
 // use Database\Factories\TaskFactory;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Factories\TaskFactory;
+use \App\Models\Task;
+use \App\Models\MaintenanceConvert;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
     // ]);
     // $this->call(TasksTableSeeder::class);
 
-      \App\Models\Task::factory()->count(3)->create();
+      Task::factory()->count(3)->create();
+      MaintenanceConvert::factory()->count(3)->create();
     }
 }

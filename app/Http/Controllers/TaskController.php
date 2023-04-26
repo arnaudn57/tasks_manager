@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
@@ -13,6 +14,10 @@ class TaskController extends Controller
       $tasks = Task::all();
       $users = User::all();
       return view('./tasks/index', compact('tasks', 'users'));
+    }
+
+    public function show(Task $task){
+      return view('./tasks/show', compact('task'));
     }
 
     public function new(){
@@ -35,13 +40,15 @@ class TaskController extends Controller
         'status' => $request->status,
         'user_id' => $request->user_id,
       ]);
-
-      return back()->with('success', 'Tache créée avec succès !');
+      Alert::success('Congrats', 'La tache a bien été créée !');
+    // return back()->with('success', 'Tache créée avec succès !');
+      return redirect()->route('tasks');
     }
 
     public function delete(Task $task){
       $task->delete();
-      return back()->with('success', 'Tache supprimée avec succès !');
+      Alert::success('Congrats', 'La tache a bien été supprimée !');
+      return redirect()->route('tasks');
     }
 
     public function edit(Task $task){
